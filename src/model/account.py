@@ -1,0 +1,2 @@
+PHONE = "15923838372"
+PASSWORD = "Huareu0.0."

@@ -1,0 +1,7 @@
+google-genai
+openai
+requests
+certifi
+python-dotenv
+cryptography
+Pillow
