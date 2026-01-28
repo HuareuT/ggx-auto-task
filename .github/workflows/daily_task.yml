@@ -3,7 +3,7 @@ name: Daily Task
 on:
   schedule:
     # 每天北京时间 17:19 运行 (UTC 09:19)
-    - cron: "10 9 * * *"
+    - cron: "20 9 * * *"
   workflow_dispatch:
 
 jobs:
