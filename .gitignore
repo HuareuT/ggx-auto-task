@@ -1,0 +1,6 @@
+resources
+sources
+.env
+session.json
+__pycache__/
+*.pyc
