@@ -38,9 +38,9 @@ def main(cate_id):
         if not post['isCollection']:
             actions.collect_post(post['id'], post['categoryId'])
             time.sleep(1)
-        if post['commentNum'] == 0 or not post['isTopping']:
-            actions.comment_post(post['id'])
-            time.sleep(1)
+        # if post['commentNum'] == 0 or not post['isTopping']:
+        #     actions.comment_post(post['id'])
+        #     time.sleep(1)
 
 
 if __name__ == "__main__":

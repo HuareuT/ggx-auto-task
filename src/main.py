@@ -1,5 +1,6 @@
-from model.qianfan_model import get_image
-from model.genai_model import get_content
+
+# from model.qianfan_model import get_image
+# from model.genai_model import get_content
 import requests
 import tempfile
 import os
@@ -8,6 +9,7 @@ from model.action_service import ActionService
 from model.auth_service import AuthService
 from dotenv import load_dotenv
 from model.account import PHONE, PASSWORD
+from model.post_generate import generate_post
 
 # Load environment variables from .env file (if exists)
 # Must be called BEFORE importing any modules that use environment variables
@@ -53,15 +55,19 @@ def main():
 
     # 1. Generate Content using GenAI
     print("[*] Generating content using GenAI...")
-    genai_data = get_content()
-    print(f"[+] Generated Title: {genai_data['title']}")
-    print(f"[+] Generated Content: {genai_data['content']}")
-    print(f"[+] Generated Prompt: {genai_data['prompt']}")
+    # genai_data = get_content()
+
+    # print(f"[+] Generated Title: {genai_data['title']}")
+    # print(f"[+] Generated Content: {genai_data['content']}")
+    # print(f"[+] Generated Prompt: {genai_data['prompt']}")
 
     # 2. Generate Image using Qianfan
-    print("[*] Generating image using Qianfan...")
-    image_url = get_image(genai_data['prompt'])
-    print(f"[+] Image URL: {image_url}")
+    # print("[*] Generating image using Qianfan...")
+    # image_url = get_image(genai_data['prompt'])
+    # print(f"[+] Image URL: {image_url}")
+
+    post_data = generate_post()
+    image_url = post_data['img_url']
 
     if not image_url:
         print("[-] Failed to generate image.")
@@ -94,8 +100,8 @@ def main():
 
             # Task 2: Release Post
             actions.release_post(
-                title=genai_data['title'],
-                content=genai_data['content'],
+                title=post_data['title'],
+                content=post_data['content'],
                 category_id="707",
                 images=upload_results["images"]
             )
