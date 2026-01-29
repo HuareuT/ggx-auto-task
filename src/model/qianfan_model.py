@@ -8,7 +8,6 @@ client = OpenAI(
     base_url='https://qianfan.baidubce.com/v2/musesteamer',
     api_key=os.environ.get('QIANFAN_API_KEY')
 )
-# api_key='bce-v3/ALTAK-Hn7D61iovWJgLDoOc8nl1/5b5d7ad6b94bd950cf7248d6c837419c8ac9990c'
 
 
 def get_image(prompt):
