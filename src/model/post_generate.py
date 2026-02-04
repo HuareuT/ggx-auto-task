@@ -153,7 +153,17 @@ prompt2 = "据这张图，生成一个10个字以内的贴子标题和20字以�
 def generate_post():
     image_path = get_daily_image()
     desc2 = get_image_description2(image_path, prompt2)
-    desc2 = json.loads(desc2)
+
+    # Clean up markdown code fences
+    cleaned_desc2 = desc2.strip()
+    if cleaned_desc2.startswith("```json"):
+        cleaned_desc2 = cleaned_desc2[7:]
+    elif cleaned_desc2.startswith("```"):
+        cleaned_desc2 = cleaned_desc2[3:]
+    if cleaned_desc2.endswith("```"):
+        cleaned_desc2 = cleaned_desc2[:-3]
+
+    desc2 = json.loads(cleaned_desc2.strip())
     desc = get_image_description2(image_path, prompt1)
     url = get_image(desc)
     title = desc2['title']

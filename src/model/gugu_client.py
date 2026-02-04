@@ -19,8 +19,13 @@ class GuguClient:
     BRAND = "Xiaomi"
     DEVICE_ID = "22972135dee6e38edb62a06ba64c2ed00"
 
-    def __init__(self, session_file="session.json"):
-        self.session_file = session_file
+    def __init__(self, session_file=None):
+        if session_file is None:
+            self.session_file = os.path.join(os.path.dirname(
+                os.path.dirname(os.path.abspath(__file__))), "session.json")
+            print(f"[*] Using session file: {self.session_file}")
+        else:
+            self.session_file = session_file
         self.session = requests.Session()
         self.token = None
         self.user_id = None
